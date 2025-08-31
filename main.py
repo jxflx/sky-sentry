@@ -12,25 +12,20 @@ def imAwake():
 while True:
     if imAwake():
         try:
-            realtime = get_realtime()
-            values = realtime["data"]["values"]
+            forecast = get_forecast()
+            dataCurrent = forecast["timelines"]["minutely"][0]["values"]
+            data5Min = forecast["timelines"]["minutely"][6]["values"]
 
-            if itsRaining(values) and rainDirection(values) == 0:
-                log("Ya está lloviendo pero no afecta a las ventanas :)")
+            if(rainDirection(data5Min) and rainDirection(dataCurrent)):
+                log("Ya esta lloviendo y hacia alguna ventana")
+            elif(rainDirection(data5Min) == 1):
+                log("lluvia oeste")
+                notify("Lluvia al oeste en 5 minutos!", "Cierra las ventanas de uriel y de tu cuarto!")
+            elif(rainDirection(data5Min) == 2):
+                log("lluvia este")
+                notify("Lluvia al este en 5 minutos!", "Cierra las ventanas de la oficina y el balcon!")
             else:
-                forecast = get_forecast()
-                values5 = forecast["timelines"]["minutely"][5]["values"]
-
-                direction = rainDirection(values5)
-                if direction == 1:
-                    log("Lluvia en el cuarto (oeste)")
-                    notify("Lluvia en 5 min", "Cierra la ventana del cuarto!")
-                elif direction == 2:
-                    log("Lluvia en la oficina (este)")
-                    notify("Lluvia en 5 min", "Cierra la ventana de la oficina!")
-                else:
-                    log("No hacer nada")
-
+                log("NO hagas nada :))")
         except Exception as e:
             log(f"Error: {e}")
     else:
