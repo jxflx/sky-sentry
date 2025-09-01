@@ -1,17 +1,14 @@
 import time
 from config import SLEEP_INTERVAL
-from weather_api import get_realtime, get_forecast
-from logic import itsRaining, rainDirection
+from weather_api import get_forecast
+from logic import rainDirection, imAwake, dayWrap
 from notifier import log, notify
-
-def imAwake():
-    from datetime import datetime
-    now = datetime.now().hour
-    return not (23 <= now or now < 7)
 
 while True:
     if imAwake():
         try:
+            dayWrap()
+
             forecast = get_forecast()
             dataCurrent = forecast["timelines"]["minutely"][0]["values"]
             data5Min = forecast["timelines"]["minutely"][6]["values"]
