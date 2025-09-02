@@ -1,5 +1,5 @@
 import requests
-from config import API_KEY, LAT, LON
+from config import API_KEY, LAT, LON, WEATHER_CODE
 
 def get_realtime():
     url = "https://api.tomorrow.io/v4/weather/realtime"
@@ -24,4 +24,5 @@ def dayWrap():
         forecastList = resDay["timelines"]["hourly"]
         dayForecastList = forecastList[:17]
         #for h in dayForecastList:
+
 
