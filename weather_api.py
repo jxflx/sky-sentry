@@ -1,5 +1,6 @@
 import requests
 from config import API_KEY, LAT, LON, WEATHER_CODE, DANGEROUS_CODES
+from notifier import log, notify
 
 def get_realtime():
     url = "https://api.tomorrow.io/v4/weather/realtime"
@@ -49,6 +50,20 @@ def dayWrap():
 
         
         rainIntervals.append([inicio, prev])
+
+        stringReport = "Hola! El clima de hoy será: "
+
+        if rainIntervals:
+            stringReport += "Lluvia a las: "
+            for i in rainIntervals:
+                stringReport += f"{i[0]} a las {i[1]} horas, "
+        else:
+            stringReport += " Sin precipitaciones fuertes notables"
+        
+        log(stringReport)
+        notify("Reporte del Dia", stringReport)
+
+
             
 
 

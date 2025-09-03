@@ -12,7 +12,7 @@ def rainDirection(res):
 
     if itsRaining(res):
         if 244 <= windDirec <= 304:
-            return 1  # cuarto (oeste)
+            return 1  # oficina (este)
         elif 60 <= windDirec <= 120:
-            return 2  # oficina (este)
+            return 2  # cuarto (oeste)
     return 0
