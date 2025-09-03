@@ -46,3 +46,4 @@ DANGEROUS_CODES = {
   "7102": "Granizo Ligero",
   "8000": "Tormenta Eléctrica"
 }
+

@@ -1,7 +1,7 @@
 import time
 from config import SLEEP_INTERVAL
-from weather_api import get_forecast
-from logic import rainDirection, imAwake, dayWrap
+from weather_api import get_forecast, dayWrap
+from logic import rainDirection, imAwake
 from notifier import log, notify
 
 while True:
