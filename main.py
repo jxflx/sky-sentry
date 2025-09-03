@@ -1,13 +1,12 @@
 import time
 from config import SLEEP_INTERVAL
 from weather_api import get_forecast
-from logic import rainDirection, imAwake, dayWrap
+from logic import rainDirection, imAwake
 from notifier import log, notify
 
 while True:
     if imAwake():
         try:
-            dayWrap()
 
             forecast = get_forecast()
             dataCurrent = forecast["timelines"]["minutely"][0]["values"]
