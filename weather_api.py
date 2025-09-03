@@ -16,7 +16,7 @@ def get_forecast():
 def dayWrap():
     from datetime import datetime
     now = datetime.now().hour
-    if(now == 23):
+    if(now == 7):
         url = "https://api.tomorrow.io/v4/weather/forecast"
         params = {"location": f"{LAT},{LON}", "timesteps": "1h", "units": "metric", "apikey": API_KEY}
 
@@ -31,8 +31,26 @@ def dayWrap():
             timetmp = datetime.fromisoformat(h["values"]["time"].replace("Z", "+00:00")).astimezone().hour
 
             if(weathertmp in DANGEROUS_CODES):
-                forecastTimeline.append([timetmp, weathertmp])
-    
+                forecastTimeline.append(timetmp)
+
+
+        rainIntervals = []
+
+        inicio = forecastTimeline[0]
+        prev = inicio
+
+        for hora in forecastTimeline[1:]:
+            if hora == prev + 1:
+                prev = hora
+            else:  
+                rainIntervals.append([inicio, prev])
+                inicio = hora
+                prev = hora
+
+        
+        rainIntervals.append([inicio, prev])
+            
+
 
             
 

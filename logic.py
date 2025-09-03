@@ -2,7 +2,7 @@ from datetime import datetime
 
 def imAwake():
     now = datetime.now().hour
-    return not (24 <= now or now < 7)
+    return not (23 <= now or now < 7)
 
 def itsRaining(res):
     return res["precipitationProbability"] >= 50
