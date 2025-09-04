@@ -16,8 +16,8 @@ def get_forecast():
 
 def dayWrap():
     from datetime import datetime
-    now = datetime.now().hour
-    if(now == 7):
+    now = datetime.now()
+    if(now.hour == 7) and (5 >= now.minute >= 0):
         url = "https://api.tomorrow.io/v4/weather/forecast"
         params = {"location": f"{LAT},{LON}", "timesteps": "1h", "units": "metric", "apikey": API_KEY}
 
@@ -37,19 +37,20 @@ def dayWrap():
 
         rainIntervals = []
 
-        inicio = forecastTimeline[0]
-        prev = inicio
+        if forecastTimeline:
+            inicio = forecastTimeline[0]
+            prev = inicio
 
-        for hora in forecastTimeline[1:]:
-            if hora == prev + 1:
-                prev = hora
-            else:  
-                rainIntervals.append([inicio, prev])
-                inicio = hora
-                prev = hora
+            for hora in forecastTimeline[1:]:
+                if hora == prev + 1:
+                    prev = hora
+                else:  
+                    rainIntervals.append([inicio, prev])
+                    inicio = hora
+                    prev = hora
 
-        
-        rainIntervals.append([inicio, prev])
+            rainIntervals.append([inicio, prev])
+
 
         stringReport = "Hola! El clima de hoy será: "
 
