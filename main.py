@@ -8,6 +8,7 @@ while True:
     if imAwake():
         try:
 
+            dayWrap()
             forecast = get_forecast()
             dataCurrent = forecast["timelines"]["minutely"][0]["values"]
             data5Min = forecast["timelines"]["minutely"][6]["values"]
