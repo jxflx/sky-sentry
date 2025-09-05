@@ -7,14 +7,13 @@ def imAwake():
 
 def dangerousPrecipitation(res):
     return str(res["weatherCode"]) in DANGEROUS_CODES
-    
 
 def rainDirection(res):
     windDirec = res["windDirection"]
 
     if dangerousPrecipitation(res):
-        if 214 <= windDirec <= 334:
-            return 1  # cuarto (este)
-        elif 30 <= windDirec <= 150:
-            return 2  # oficina (oeste)
+        if 244 <= windDirec <= 304:
+            return 1  # oficina (este)
+        elif 60 <= windDirec <= 120:
+            return 2  # cuarto (oeste)
     return 0
