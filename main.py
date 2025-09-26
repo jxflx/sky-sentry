@@ -7,7 +7,6 @@ from notifier import log, notify
 while True:
     if imAwake():
         try:
-
             dayWrap()
             forecast = get_forecast()
             dataCurrent = forecast["timelines"]["minutely"][0]["values"]

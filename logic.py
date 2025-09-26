@@ -7,6 +7,7 @@ def imAwake():
 
 def dangerousPrecipitation(res):
     return str(res["weatherCode"]) in DANGEROUS_CODES
+    
 
 def rainDirection(res):
     windDirec = res["windDirection"]

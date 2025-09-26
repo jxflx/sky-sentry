@@ -1,5 +1,5 @@
 import requests
-from config import API_KEY, LAT, LON, WEATHER_CODE, DANGEROUS_CODES
+from config import API_KEY, LAT, LON, DANGEROUS_CODES
 from notifier import log, notify
 
 def get_realtime():
