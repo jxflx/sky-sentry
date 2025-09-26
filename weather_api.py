@@ -1,10 +1,6 @@
 import requests
-<<<<<<< HEAD
-from config import API_KEY, LAT, LON
-=======
 from config import API_KEY, LAT, LON, WEATHER_CODE, DANGEROUS_CODES
 from notifier import log, notify
->>>>>>> dayWrap
 
 def get_realtime():
     url = "https://api.tomorrow.io/v4/weather/realtime"
@@ -17,8 +13,6 @@ def get_forecast():
     return requests.get(url, params=params, timeout=10).json()
 
 
-<<<<<<< HEAD
-=======
 
 def dayWrap():
     from datetime import datetime
@@ -76,4 +70,3 @@ def dayWrap():
 
             
 
->>>>>>> dayWrap
