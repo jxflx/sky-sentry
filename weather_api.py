@@ -29,9 +29,11 @@ def dayWrap():
 
         for h in dayForecastList:
             weathertmp = h["values"]["weatherCode"]
-            timetmp = datetime.fromisoformat(h["values"]["time"].replace("Z", "+00:00")).astimezone().hour
+            # La API entrega el tiempo de cada punto horario en la clave de primer nivel "time"
+            timetmp = datetime.fromisoformat(h["time"].replace("Z", "+00:00")).astimezone().hour
 
-            if(weathertmp in DANGEROUS_CODES):
+            # Unificar tipos con DANGEROUS_CODES (en lógica se compara como str)
+            if str(weathertmp) in DANGEROUS_CODES:
                 forecastTimeline.append(timetmp)
 
 
@@ -55,9 +57,9 @@ def dayWrap():
         stringReport = "Hola! El clima de hoy será: "
 
         if rainIntervals:
-            stringReport += "Lluvia a las: "
+            stringReport += "Lluvia en los intervalos: "
             for i in rainIntervals:
-                stringReport += f"{i[0]} a las {i[1]} horas, "
+                stringReport += f"de {i[0]} a {i[1]} horas, "
         else:
             stringReport += " Sin precipitaciones fuertes notables"
         
